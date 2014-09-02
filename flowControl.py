@@ -58,6 +58,7 @@ def test():
 	if flow<0 or flow>=Limit:
 		global cnt
 		cnt+=1
+        logout()
 		print "login unsuccess or flow execced\n"
 		return False
 	else:
@@ -71,6 +72,6 @@ def fuckYourSelf():
 		global cnt
 		readIDList(cnt)
 		while test():
-			time.sleep(3)
+			time.sleep(30)
 
 fuckYourSelf()
