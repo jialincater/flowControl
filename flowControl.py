@@ -58,11 +58,11 @@ def test():
 	if flow<0 or flow>=Limit:
 		global cnt
 		cnt+=1
-        logout()
+        #logout()
 		print "login unsuccess or flow execced\n"
 		return False
 	else:
-		print "check success"
+		print "check success with flow stage: "+str(flow/(Limit/10))
 		return True
 
 def fuckYourSelf():
