@@ -2,7 +2,7 @@ import urllib2
 import urllib
 import re
 import time
-Limit=10485760
+Limit=10485760-85760
 cnt=0
 def login(ID,passWord):
 	#print "login with "+ID+"\n"
@@ -41,6 +41,23 @@ def getFlow():
 		#print "login unsuccess, next ID\n"
 		return -1
 
+def listFlow():
+	minFlow=Limit
+	maxn=-1
+	n=0
+	# Here is the number of your ID
+	while n<4:
+		readIDList(n)
+		Flow = getFlow()
+		time.sleep(3)
+		logout()
+		if Flow<minFlow:
+			minFlow=Flow
+			maxn=n
+		n+=1
+	print maxn
+	return maxn
+
 def readIDList(cnt):
 	file_object = open('s.log')
 	all_the_text = file_object.read()
@@ -69,9 +86,14 @@ def fuckYourSelf():
 	# read ID list
 	logout()
 	while True:
-		global cnt
+		cnt = listFlow()
 		readIDList(cnt)
 		while test():
-			time.sleep(30)
+			time.sleep(3)
+
+		#global cnt
+	#	readIDList(cnt)
+	#	while test():
+	#		time.sleep(30)
 
 fuckYourSelf()
