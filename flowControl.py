@@ -1,3 +1,4 @@
+#-*- encoding: utf-8 -*- 
 import urllib2
 import urllib
 import re
@@ -15,6 +16,7 @@ def login(ID,passWord):
 	#print door
 	res = urllib2.urlopen(door).read()
 	#print res
+	time.sleep(3)
 
 def logout():
 	url = "http://gw.bupt.edu.cn/F.htm"
@@ -49,9 +51,10 @@ def listFlow():
 	while n<4:
 		readIDList(n)
 		Flow = getFlow()
-		time.sleep(3)
+		time.sleep(1)
+		# print Flow
 		logout()
-		if Flow<minFlow:
+		if Flow<minFlow and Flow!=-1 :
 			minFlow=Flow
 			maxn=n
 		n+=1
@@ -66,7 +69,8 @@ def readIDList(cnt):
 	info=line.split(' ')
 	ID=info[0]
 	passWord=info[1]
-	print "now login with ID "+ID
+	name=info[2]
+	print "now login with "+name+": "+ID
 	login(ID,passWord)
 
 def test():
@@ -89,7 +93,7 @@ def fuckYourSelf():
 		cnt = listFlow()
 		readIDList(cnt)
 		while test():
-			time.sleep(3)
+			time.sleep(20)
 
 		#global cnt
 	#	readIDList(cnt)
